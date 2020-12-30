@@ -27,6 +27,13 @@ body {
   display: inline-block;
 }
 
+.title {
+  display: grid;
+  flex-direction: row;
+  justify-items: center;
+  margin: auto 10px 10px;
+}
+
 .container img {
   display: inline-block;
   height: 40px;

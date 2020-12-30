@@ -4,7 +4,7 @@ import Friends from "./Friends";
 function App() {
   return (
     <div className="container">
-      <div className="container">
+      <div className="title">
         <h1>List of </h1>
         <img src="../images/friends.png" />
       </div>
