@@ -47,9 +47,13 @@ export default function Friends() {
     // console.log(newFriendsList);
   }
 
-  function editFriendName() {
-    console.log("I'm working");
+  function editFriendName(id) {
     // Get friend by id
+    const selectedFriend = friendsList.filter(
+      (friendObject) => id === friendObject.key
+    )[0];
+    console.log(selectedFriend);
+
     // set setFriendName
 
     //EditFriendComponent, Conditonal rendering based on editedFriend
