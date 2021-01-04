@@ -5,7 +5,7 @@ export default function EditFriend(props) {
 
   function handleKeyPress(event) {
     if (event.charCode === 13) {
-      props.nameSetter(props.dispalyName);
+      console.log("Enter");
     }
   }
 
