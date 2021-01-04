@@ -6,9 +6,8 @@ function App() {
     <div className="container">
       <div className="title">
         <h1>List of </h1>
-        <img src="../images/friends.png" />
+        <img src="../images/friends.png" alt="friends" />
       </div>
-
       <Friends />
     </div>
   );
