@@ -4,11 +4,18 @@ import friends from "../friends";
 import EditFriend from "./EditFriend";
 
 // function to pass props to the child component
-function createFriend(friendObject, removeFriend, editFriend, updateObject) {
+function createFriend(
+  key,
+  friendObject,
+  removeFriend,
+  editFriend,
+  updateObject
+) {
   //Destruction of props ... preferably inside the child component
   // const { key, name, isBestFriend } = friendObject;
   return (
     <Friend
+      key={key}
       friend={friendObject}
       friendRemover={removeFriend}
       friendEditor={editFriend}
@@ -65,28 +72,10 @@ export default function Friends() {
     setFriendName(selectedFriend);
     // 3. set the showEdit state to "true"
     setShowEdit(true);
-    // 4.
-  }
-
-  function setEditedName(inputName) {
-    //1.input name
-    const selectedFriend = { ...editedFriend, name: inputName };
-    //2. update the array and put it in a new array
-    const friendsListEdited = friendsList.map((friendObject) => {
-      if (friendObject.key === selectedFriend.key) {
-        return selectedFriend;
-      } else {
-        return friendObject;
-      } // it is also possible to elimenate else
-    });
-    //3. putting the new array in the current state and
-    //set the state of showing the form to false
-    setFriends(friendsListEdited);
-    setShowEdit(false);
   }
 
   function updateFriendObject(object) {
-    //3. map into a new array and put the new object instead
+    //1. map into a new array and put the new object instead
     const friendsListEdited = friendsList.map((friendObject) => {
       if (friendObject.key === object.key) {
         return object;
@@ -95,7 +84,7 @@ export default function Friends() {
       }
     });
 
-    //4. setFriends(the new array)
+    //2. setFriends(the new array)
     setFriends(friendsListEdited);
     setShowEdit(false);
   }
@@ -121,6 +110,7 @@ export default function Friends() {
 
       {friendsList.map((friendObject) =>
         createFriend(
+          friendObject.key,
           friendObject,
           handleRemoveFriend,
           editFriendName,
@@ -132,7 +122,6 @@ export default function Friends() {
         <EditFriend
           friendObject={editedFriend}
           objectUpdater={updateFriendObject}
-          nameSetter={setEditedName}
         />
       ) : null}
     </div>
