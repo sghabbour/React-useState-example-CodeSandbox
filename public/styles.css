@@ -9,38 +9,11 @@ body {
   background: #50a3a2;
   width: 100%;
   height: 100%;
-}
-
-.container {
-  margin: 40px auto;
-  padding: 10px auto;
-  width: 60%;
-  display: grid;
-  justify-items: center;
-}
-
-.container h1 {
-  font-size: 40px;
-  font-weight: 700;
-  margin: 40px 10px auto;
-  padding: 70px auto 50px auto;
-  display: inline-block;
-}
-
-.title {
-  display: grid;
-  flex-direction: row;
-  justify-items: center;
-  margin: auto 10px 10px;
-}
-
-.container img {
-  display: inline-block;
-  height: 40px;
+  position: relative;
 }
 
 input {
-  border: 1px solid rgba(252, 252, 252, 0.4);
+  border: none;
   background-color: rgba(252, 252, 252, 0.2);
   width: 250px;
   border-radius: 3px;
@@ -52,6 +25,10 @@ input {
   font-size: 18px;
   color: white;
   font-weight: 300;
+}
+
+::placeholder {
+  color: white;
 }
 
 button {
@@ -66,26 +43,126 @@ button {
   text-align: center;
   font-size: 18px;
   color: #50a3a2;
+  font-weight: 200;
 }
 
-.friends-box {
-  flex-direction: column;
+footer {
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 15px;
+  margin: 40px auto 10px auto;
+}
+
+.container {
+  margin: 40px auto;
+  padding: 10px auto;
+  width: auto;
   display: grid;
-  justify-items: right;
+  justify-items: center;
+  /* align-content: middle; */
+  overflow: auto;
+  gap: 7px;
+}
+
+.container header {
+  display: grid;
+  align-content: center;
+
+  flex-direction: row;
+  justify-items: center;
+  margin: auto 10px 10px;
+}
+
+.container h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 40px 10px auto;
+  padding: 70px auto 50px auto;
+  display: inline-block;
+}
+.container img {
+  display: inline-block;
+  height: 40px;
+}
+
+.container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container label {
+  display: grid inline-block;
   align-items: center;
+  vertical-align: middle;
+  grid-auto-flow: column;
+  /* gap: 10px; */
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #50a3a2;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .friend {
+  display: grid;
+  grid-auto-flow: column;
   border: 0;
   font-family: "Josefin Sans", sans-serif;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  grid-template-columns: auto 1fr auto auto;
+  min-width: 350px;
 }
 
 .friend span {
   display: inline-block;
   font-size: 25px;
-  width: 100px;
   vertical-align: middle;
+  /* justify-self: flex-start; */
 }
 
 .friend button {
@@ -98,4 +175,87 @@ button {
   width: auto;
   padding: 10px;
   margin: 7px;
+  justify-self: flex-end;
+}
+
+.friend button:disabled,
+button[disabled] {
+  font-size: 16px;
+  background-color: white;
+  opacity: 0.5;
+  border-radius: 3px;
+  color: #50a3a27e;
+  text-align: center;
+  display: inline-block;
+  width: auto;
+  padding: 10px;
+  margin: 7px;
+}
+
+.friend input {
+  position: relative;
+  top: 23px;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  width: auto;
+  padding: 10px;
+  margin: 20px;
+  border: 0px;
+}
+
+.friend input[type="checkbox"] {
+  top: 3px;
+}
+
+.best-friend {
+  display: grid;
+  grid-auto-flow: column;
+  border: 0;
+  font-family: "Josefin Sans", sans-serif;
+  justify-content: flex-end;
+  grid-template-columns: auto 1fr auto auto;
+  min-width: 350px;
+}
+
+.best-friend span {
+  display: inline-block;
+  font-size: 25px;
+  vertical-align: middle;
+  color: #f7bd33;
+}
+
+.best-friend button {
+  font-size: 16px;
+  background-color: white;
+  border-radius: 3px;
+  color: #50a3a2;
+  text-align: center;
+  display: inline-block;
+  width: auto;
+  padding: 10px;
+  margin: 7px;
+  justify-self: flex-end;
+}
+
+.best-friend input {
+  position: relative;
+  top: 23px;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  width: auto;
+  padding: 10px;
+  margin: 20px;
+  border: 0px;
+}
+
+.best-friend input[type="checkbox"] {
+  top: 3px;
 }

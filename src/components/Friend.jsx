@@ -3,23 +3,44 @@ import React from "react";
 // const noCheckedBoxes = 0;
 
 export default function Friend(props) {
+  console.log("friends");
+
+  // Disable uneeded render
+  function disableButton() {
+    //Object validity
+    // 1- object.Keys();
+    // 2- if(props.currentFriend)
+    if (props.currentFriend) {
+      if (props.friend.key === props.currentFriend.key) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
+
   return (
     <div
       key={props.friend.key}
       className={props.friend.isBestFriend ? "best-friend" : "friend"}
     >
-      <input
-        name="myCheckbox"
-        type="checkbox"
-        onChange={() => {
-          const updatedFriend = {
-            ...props.friend,
-            isBestFriend: !props.friend.isBestFriend
-          };
-          props.objectUpdater(updatedFriend);
-        }}
-        checked={props.friend.isBestFriend}
-      />
+      <label>
+        <input
+          name="myCheckbox"
+          type="checkbox"
+          onChange={() => {
+            const updatedFriend = {
+              ...props.friend,
+              isBestFriend: !props.friend.isBestFriend
+            };
+            props.objectUpdater(updatedFriend);
+          }}
+          checked={props.friend.isBestFriend}
+          disabled={disableButton()}
+        />
+        <span className="checkmark"></span>
+      </label>
       <span>
         {props.friend.name}{" "}
         {props.friend.isBestFriend ? (
@@ -31,9 +52,13 @@ export default function Friend(props) {
       </span>
 
       <button
+        // (JSX attribute) React.DOMAttributes<HTMLButtonElement>.onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
         onClick={() => {
           props.friendRemover(props.friend.key);
         }}
+        // (JSX attribute) React.ButtonHTMLAttributes<HTMLButtonElement>.disabled?: boolean
+        disabled={disableButton()}
+        // disabled={true}
       >
         Remove
       </button>

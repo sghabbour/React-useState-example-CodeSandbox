@@ -4,10 +4,10 @@ import Friends from "./Friends";
 function App() {
   return (
     <div className="container">
-      <div className="title">
+      <header>
         <h1>List of </h1>
-        <img src="../images/friends.png" alt="friends" />
-      </div>
+        <img src="https://i.ibb.co/0KY5ntv/friends.png" alt="friends" />
+      </header>
       <Friends />
     </div>
   );
